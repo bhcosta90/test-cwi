@@ -63,8 +63,8 @@
             "@php artisan test"
         ],
         "format":  [
-            "@php ./vendor/bin/pint",
-            "@php ./vendor/bin/rector process"
+            "@php ./vendor/bin/rector process",
+            "@php ./vendor/bin/pint"
         ],
         "stan": [
             "@php ./vendor/bin/phpstan analyse --memory-limit=2G"

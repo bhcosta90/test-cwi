@@ -1,0 +1,314 @@
+{
+	"info": {
+		"_postman_id": "e78cc3d6-a003-4c3e-940b-28057b9d0a7b",
+		"name": "CWI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "385845",
+		"_collection_link": "https://crimson-sunset-3287.postman.co/workspace/portfolio-short-link-project~dea98809-f51b-464a-b836-3bdef2bacd4d/collection/385845-e78cc3d6-a003-4c3e-940b-28057b9d0a7b?action=share&source=collection_link&creator=385845"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Index",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/user",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"user"
+							],
+							"query": [
+								{
+									"key": "per_page",
+									"value": "5",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/user/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"user",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "bruno henrique da costa",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "bhcosta90@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "m!cXU%qtQ%8P7X2h",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "password_confirmation",
+									"value": "m!cXU%qtQ%8P7X2h",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/user/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"user",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Store",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "bruno henrique da costa",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "testing@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "m!cXU%qtQ%8P7X2h",
+									"type": "text"
+								},
+								{
+									"key": "password_confirmation",
+									"value": "m!cXU%qtQ%8P7X2h",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/user",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "bruno henrique da costa",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "testing@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "m!cXU%qtQ%8P7X2h",
+									"type": "text"
+								},
+								{
+									"key": "password_confirmation",
+									"value": "m!cXU%qtQ%8P7X2h",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/user/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"user",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "8"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "External",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/external",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"external"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Health",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/health",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"health"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "host",
+			"value": "http://127.0.0.1:8100",
+			"type": "string"
+		},
+		{
+			"key": "token",
+			"value": "1|wLww74ZP35aogFAdTNqq8OPjvcqcyOzLZ6QMeKwhadf890c0",
+			"type": "string"
+		}
+	]
+}

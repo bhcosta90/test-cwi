@@ -8,6 +8,9 @@ use Illuminate\Foundation\Http\FormRequest;
 
 final class IndexRequest extends FormRequest
 {
+    /**
+     * @return string[]
+     */
     public function rules(): array
     {
         return [

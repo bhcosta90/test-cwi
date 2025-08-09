@@ -9,10 +9,12 @@ use App\Http\Requests\User\StoreRequest;
 use App\Http\Requests\User\UpdateRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Http\Response;
 
 final class UserController extends Controller
 {
-    public function index(User $user, IndexRequest $request)
+    public function index(User $user, IndexRequest $request): AnonymousResourceCollection
     {
         $result = $user->query()
             ->orderBy('name')
@@ -41,7 +43,7 @@ final class UserController extends Controller
         return new UserResource($user);
     }
 
-    public function destroy(User $user)
+    public function destroy(User $user): Response
     {
         $user->delete();
 

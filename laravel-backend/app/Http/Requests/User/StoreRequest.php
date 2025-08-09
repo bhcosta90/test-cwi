@@ -9,6 +9,9 @@ use Illuminate\Validation\Rules\Password;
 
 final class StoreRequest extends FormRequest
 {
+    /**
+     * @return array<string, mixed>
+     */
     public function rules(): array
     {
         return [

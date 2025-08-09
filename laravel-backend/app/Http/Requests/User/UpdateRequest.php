@@ -11,6 +11,9 @@ use Illuminate\Validation\Rules\Password;
 
 final class UpdateRequest extends FormRequest
 {
+    /**
+     * @return array<string, mixed>
+     */
     public function rules(): array
     {
         return [

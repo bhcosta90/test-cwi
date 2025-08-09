@@ -1,73 +1,73 @@
-`# Test CWI - Backend Laravel + Microserviço de Posts
+# Test CWI - Backend Laravel + Posts Microservice
 
-Este projeto contém:
-- Um backend em Laravel exposto via Apache (serviço app)
-- Um banco de dados MySQL (serviço mysql)
-- Um microserviço Node.js para posts (serviço posts)
-- Coleções do Postman para testar as APIs (pasta ./postman)
+This project contains:
+- A Laravel backend exposed via Apache (service app)
+- A MySQL database (service mysql)
+- A Node.js microservice for posts (service posts)
+- Postman collections to test the APIs (folder ./postman)
 
-Default de portas (configuráveis via variáveis):
+Default ports (configurable via environment variables):
 - Laravel (app): http://localhost:${APP_PORT:-8200}
-- Microserviço posts: http://localhost:${MS_POSTS_PORT:-3200}
+- Posts microservice: http://localhost:${MS_POSTS_PORT:-3200}
 - MySQL: localhost:${FORWARD_DB_PORT:-3306}
 
-Requisitos:
-- Docker e Docker Compose instalados
+Requirements:
+- Docker and Docker Compose installed
 
-## Subindo o projeto (modo rápido)
-1. Instalar dependências do Laravel via Composer (dentro de um container):
+## Starting the project (quick mode)
+1. Install Laravel dependencies via Composer (inside a container):
    docker run --rm -u "$(id -u):$(id -g)" -v "$PWD/laravel-backend/:/var/www/html" -w /var/www/html composer install --ignore-platform-req=ext-gd
-2. Subir os serviços (app, mysql, posts):
+2. Start the services (app, mysql, posts):
    docker compose up -d
-3. Criar arquivo de ambiente do Laravel:
+3. Create Laravel environment file:
    docker compose exec -u "$(id -u):$(id -g)" app cp .env.example .env
-4. Ajustar permissões de pastas de cache e storage:
+4. Adjust permissions for cache and storage folders:
    docker compose exec app chmod 777 -R storage bootstrap/cache
-5. Executar migrações e seeds:
+5. Run migrations and seeds:
    docker compose exec -u "$(id -u):$(id -g)" app php artisan migrate
    docker compose exec -u "$(id -u):$(id -g)" app php artisan db:seed
 
-Após esses passos:
-- API Laravel: http://localhost:8200
+After these steps:
+- Laravel API: http://localhost:8200
 - Posts service: http://localhost:3200
 
-Observação: as portas podem ser alteradas exportando APP_PORT, MS_POSTS_PORT e FORWARD_DB_PORT antes do docker compose up.
+Note: Ports can be changed by exporting APP_PORT, MS_POSTS_PORT, and FORWARD_DB_PORT before running docker compose up.
 
-## Variáveis de ambiente úteis
-- APP_PORT: porta local para expor o Apache do Laravel (padrão 8200)
-- MS_POSTS_PORT: porta local para o microserviço de posts (padrão 3200)
-- FORWARD_DB_PORT: porta local do MySQL (padrão 3306)
+## Useful environment variables
+- APP_PORT: local port to expose Laravel's Apache (default 8200)
+- MS_POSTS_PORT: local port for the posts microservice (default 3200)
+- FORWARD_DB_PORT: local MySQL port (default 3306)
 
-## Banco de dados
+## Database
 - Host: 127.0.0.1
-- Porta: ${FORWARD_DB_PORT:-3306}
-- Base: laravel
-- Usuário root, senha password (ver docker-compose.yaml)
-- No .env do Laravel, os valores padrão devem funcionar ao usar Docker Compose.
+- Port: ${FORWARD_DB_PORT:-3306}
+- Database: laravel
+- User: root, password: password (see docker-compose.yaml)
+- In Laravel's .env, the default values should work when using Docker Compose.
 
-## Comandos úteis do dia a dia
-- Subir os serviços:
+## Useful daily commands
+- Start services:
   docker compose up -d
-- Ver logs:
+- View logs:
   docker compose logs -f app
   docker compose logs -f posts
   docker compose logs -f mysql
-- Executar comandos Artisan:
-  docker compose exec -u "$(id -u):$(id -g)" app php artisan <comando>
-- Rodar testes do Laravel:
+- Run Artisan commands:
+  docker compose exec -u "$(id -u):$(id -g)" app php artisan <command>
+- Run Laravel tests:
   docker compose exec -u "$(id -u):$(id -g)" app php artisan test
 
-## Testando com Postman
-- Importe a coleção da pasta ./postman no Postman.
-- Ajuste a variável de ambiente base_url para http://localhost:8200 (Laravel) e, quando necessário, posts_base_url para http://localhost:3200.
+## Testing with Postman
+- Import the collection from ./postman into Postman.
+- Set the environment variable base_url to http://localhost:8200 (Laravel) and, when needed, posts_base_url to http://localhost:3200.
 
 ## Troubleshooting
-- Portas em uso: altere APP_PORT/MS_POSTS_PORT/FORWARD_DB_PORT ou libere as portas ocupadas.
-- Permissões em storage/bootstrap/cache: rode novamente o comando de chmod mostrado acima.
-- Reset do banco (cuidado: destrói dados):
+- Ports in use: change APP_PORT/MS_POSTS_PORT/FORWARD_DB_PORT or free the occupied ports.
+- Permissions in storage/bootstrap/cache: run the chmod command shown above again.
+- Database reset (warning: destroys data):
   docker compose down -v && docker compose up -d && docker compose exec -u "$(id -u):$(id -g)" app php artisan migrate --seed
 
-## Estrutura dos serviços (docker-compose.yaml)
-- app: constrói a imagem a partir do Dockerfile, monta ./laravel-backend em /var/www/html e depende de mysql e posts.
-- mysql: imagem mysql:8.0 com persistência em ./data/mysql.
-- posts: imagem node:20 que instala dependências e executa node server.js a partir de ./ms-posts.`
+## Service structure (docker-compose.yaml)
+- app: builds the image from Dockerfile, mounts ./laravel-backend to /var/www/html and depends on mysql and posts.
+- mysql: mysql:8.0 image with persistence in ./data/mysql.
+- posts: node:20 image that installs dependencies and runs node server.js from ./ms-posts.

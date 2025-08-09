@@ -72,7 +72,8 @@
         "ci": [
             "@php ./vendor/bin/pint --test",
             "@php ./vendor/bin/rector process --dry-run",
-            "@php ./vendor/bin/phpstan analyse --memory-limit=2G"
+            "@php ./vendor/bin/phpstan analyse --memory-limit=2G",
+            "@php artisan test --parallel --processes=4 --no-interaction --coverage=coverage.xml"
         ]
     },
     "extra": {

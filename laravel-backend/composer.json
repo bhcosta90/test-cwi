@@ -68,6 +68,11 @@
         ],
         "stan": [
             "@php ./vendor/bin/phpstan analyse --memory-limit=2G"
+        ],
+        "ci": [
+            "@php ./vendor/bin/pint --test",
+            "@php ./vendor/bin/rector process --dry-run",
+            "@php ./vendor/bin/phpstan analyse --memory-limit=2G"
         ]
     },
     "extra": {

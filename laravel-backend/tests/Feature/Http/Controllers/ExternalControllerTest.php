@@ -41,6 +41,15 @@ it('returns 503 when external service responds with non-200 status', function (i
         ->assertJson(['message' => 'External service is unreachable']);
 })->with([404, 500, 301, 403]);
 
+it('returns 503 when external service URL is not configured', function (): void {
+    config(['app.ms_posts' => '']);
+
+    $response = $this->getJson('/external');
+
+    $response->assertStatus(Response::HTTP_SERVICE_UNAVAILABLE)
+        ->assertJson(['message' => 'External service URL is not configured']);
+});
+
 it('supports HEAD requests (mirrors GET route)', function (): void {
     config(['app.ms_posts' => 'http://external.test']);
 

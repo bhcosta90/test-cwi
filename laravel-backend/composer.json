@@ -73,7 +73,7 @@
             "@php ./vendor/bin/pint --test",
             "@php ./vendor/bin/rector process --dry-run",
             "@php ./vendor/bin/phpstan analyse --memory-limit=2G",
-            "@php artisan test --parallel --coverage=coverage.xml"
+            "@php artisan test --parallel"
         ]
     },
     "extra": {

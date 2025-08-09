@@ -1,0 +1,35 @@
+services:
+  app:
+    restart: on-failure
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    image: test-cwi/laravel-backend
+    ports:
+      - '${APP_PORT:-8200}:80'
+    depends_on:
+      - mysql
+      - posts
+    volumes:
+      - './laravel-backend:/var/www/html'
+    entrypoint: apache2-foreground
+
+  mysql:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: laravel
+    ports:
+      - '3306:3306'
+    volumes:
+      - ./data/mysql/:/var/lib/mysql
+
+  posts:
+    image: node:20
+    working_dir: /usr/src/app
+    volumes:
+      - ./ms-posts:/usr/src/app
+    entrypoint: sh -c "npm i && node server.js"
+    ports:
+      - '${MS_POSTS_PORT:-3200}:3000'

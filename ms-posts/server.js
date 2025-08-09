@@ -1,7 +1,7 @@
 // server.js
 const express = require('express');
 const app = express();
-const PORT = 8080;
+const PORT = 3000;
 
 // Simulação de dados de posts
 const posts = [

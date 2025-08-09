@@ -7,6 +7,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
+use Throwable;
 
 final class ExternalController extends Controller
 {
@@ -18,7 +20,16 @@ final class ExternalController extends Controller
             return response()->json(['message' => 'External service URL is not configured'], Response::HTTP_SERVICE_UNAVAILABLE);
         }
 
-        $response = Http::get($urlBase . '/posts');
+        try {
+            $response = Http::timeout(1)->get($urlBase . '/posts');
+        } catch (Throwable $e) {
+            Log::error('Error when accessing external service', [
+                'exception' => $e,
+                'trace'     => $e->getTraceAsString(),
+            ]);
+
+            return response()->json(['message' => 'External service is unreachable'], Response::HTTP_SERVICE_UNAVAILABLE);
+        }
 
         if (Response::HTTP_OK !== $response->status()) {
             return response()->json(['message' => 'External service is unreachable'], Response::HTTP_SERVICE_UNAVAILABLE);

@@ -10,3 +10,5 @@
 ## Execute commands
 
 - docker compose up -d app
+
+## Import the collection of the postman on the path ./postman

@@ -30,6 +30,9 @@ Este projeto utiliza Docker e Docker Compose para facilitar a configuração. Si
    - docker compose exec -u "$(id -u):$(id -g)" app php artisan migrate
    - docker compose exec -u "$(id -u):$(id -g)" app php artisan db:seed
 
+## Postman
+- Importe a coleção localizada em: ./postman
+
 ## Comandos úteis
 - Subir a aplicação (em segundo plano):
   - docker compose up -d app
@@ -37,9 +40,6 @@ Este projeto utiliza Docker e Docker Compose para facilitar a configuração. Si
   - docker compose logs -f app
 - Derrubar containers:
   - docker compose down
-
-## Postman
-- Importe a coleção localizada em: ./postman
 
 ## Dicas de Troubleshooting
 - Se aparecer erro de permissão (por exemplo, ao gravar logs):

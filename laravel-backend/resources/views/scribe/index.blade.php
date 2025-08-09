@@ -26,7 +26,7 @@
             </style>
 
     <script>
-        var tryItOutBaseUrl = "http://cwi-laravel.test";
+        var tryItOutBaseUrl = "http://laravel-backend.test";
         var useCsrf = Boolean();
         var csrfUrl = "/sanctum/csrf-cookie";
     </script>
@@ -97,7 +97,7 @@
     </ul>
 
     <ul class="toc-footer" id="last-updated">
-        <li>Last updated: August 8, 2025</li>
+        <li>Last updated: August 9, 2025</li>
     </ul>
 </div>
 
@@ -106,7 +106,7 @@
     <div class="content">
         <h1 id="introduction">Introduction</h1>
 <aside>
-    <strong>Base URL</strong>: <code>http://cwi-laravel.test</code>
+    <strong>Base URL</strong>: <code>http://laravel-backend.test</code>
 </aside>
 <pre><code>This documentation aims to provide all the information you need to work with our API.
 
@@ -133,14 +133,18 @@ You can switch the language used with the tabs at the top right (or from the nav
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://cwi-laravel.test/api/user" \
+    --get "http://laravel-backend.test/api/user" \
     --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre></div>
+    --header "Accept: application/json" \
+    --data "{
+    \"per_page\": 1
+}"
+</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://cwi-laravel.test/api/user"
+    "http://laravel-backend.test/api/user"
 );
 
 const headers = {
@@ -148,9 +152,14 @@ const headers = {
     "Accept": "application/json",
 };
 
+let body = {
+    "per_page": 1
+};
+
 fetch(url, {
     method: "GET",
     headers,
+    body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre></div>
 
 </span>
@@ -163,12 +172,104 @@ fetch(url, {
             <summary style="cursor: pointer;">
                 <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
             </summary>
-            <pre><code class="language-http">content-type: text/html; charset=UTF-8
-cache-control: no-cache, private
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
 access-control-allow-origin: *
  </code></pre></details>         <pre>
 
-<code class="language-json" style="max-height: 300px;"></code>
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 8,
+            &quot;name&quot;: &quot;Alvena Rath&quot;,
+            &quot;email&quot;: &quot;davis.vivien@example.net&quot;,
+            &quot;created_at&quot;: &quot;2025-08-09T10:22:43+00:00&quot;,
+            &quot;updated_at&quot;: &quot;2025-08-09T10:22:43+00:00&quot;
+        }
+    ],
+    &quot;links&quot;: {
+        &quot;first&quot;: &quot;http://laravel-backend.test/api/user?page=1&quot;,
+        &quot;last&quot;: &quot;http://laravel-backend.test/api/user?page=11&quot;,
+        &quot;prev&quot;: null,
+        &quot;next&quot;: &quot;http://laravel-backend.test/api/user?page=2&quot;
+    },
+    &quot;meta&quot;: {
+        &quot;current_page&quot;: 1,
+        &quot;from&quot;: 1,
+        &quot;last_page&quot;: 11,
+        &quot;links&quot;: [
+            {
+                &quot;url&quot;: null,
+                &quot;label&quot;: &quot;&amp;laquo; Previous&quot;,
+                &quot;active&quot;: false
+            },
+            {
+                &quot;url&quot;: &quot;http://laravel-backend.test/api/user?page=1&quot;,
+                &quot;label&quot;: &quot;1&quot;,
+                &quot;active&quot;: true
+            },
+            {
+                &quot;url&quot;: &quot;http://laravel-backend.test/api/user?page=2&quot;,
+                &quot;label&quot;: &quot;2&quot;,
+                &quot;active&quot;: false
+            },
+            {
+                &quot;url&quot;: &quot;http://laravel-backend.test/api/user?page=3&quot;,
+                &quot;label&quot;: &quot;3&quot;,
+                &quot;active&quot;: false
+            },
+            {
+                &quot;url&quot;: &quot;http://laravel-backend.test/api/user?page=4&quot;,
+                &quot;label&quot;: &quot;4&quot;,
+                &quot;active&quot;: false
+            },
+            {
+                &quot;url&quot;: &quot;http://laravel-backend.test/api/user?page=5&quot;,
+                &quot;label&quot;: &quot;5&quot;,
+                &quot;active&quot;: false
+            },
+            {
+                &quot;url&quot;: &quot;http://laravel-backend.test/api/user?page=6&quot;,
+                &quot;label&quot;: &quot;6&quot;,
+                &quot;active&quot;: false
+            },
+            {
+                &quot;url&quot;: &quot;http://laravel-backend.test/api/user?page=7&quot;,
+                &quot;label&quot;: &quot;7&quot;,
+                &quot;active&quot;: false
+            },
+            {
+                &quot;url&quot;: &quot;http://laravel-backend.test/api/user?page=8&quot;,
+                &quot;label&quot;: &quot;8&quot;,
+                &quot;active&quot;: false
+            },
+            {
+                &quot;url&quot;: &quot;http://laravel-backend.test/api/user?page=9&quot;,
+                &quot;label&quot;: &quot;9&quot;,
+                &quot;active&quot;: false
+            },
+            {
+                &quot;url&quot;: &quot;http://laravel-backend.test/api/user?page=10&quot;,
+                &quot;label&quot;: &quot;10&quot;,
+                &quot;active&quot;: false
+            },
+            {
+                &quot;url&quot;: &quot;http://laravel-backend.test/api/user?page=11&quot;,
+                &quot;label&quot;: &quot;11&quot;,
+                &quot;active&quot;: false
+            },
+            {
+                &quot;url&quot;: &quot;http://laravel-backend.test/api/user?page=2&quot;,
+                &quot;label&quot;: &quot;Next &amp;raquo;&quot;,
+                &quot;active&quot;: false
+            }
+        ],
+        &quot;path&quot;: &quot;http://laravel-backend.test/api/user&quot;,
+        &quot;per_page&quot;: 1,
+        &quot;to&quot;: 1,
+        &quot;total&quot;: 11
+    }
+}</code>
  </pre>
     </span>
 <span id="execution-results-GETapi-user" hidden>
@@ -240,7 +341,19 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <br>
 <p>Example: <code>application/json</code></p>
             </div>
-                        </form>
+                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>per_page</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="per_page"                data-endpoint="GETapi-user"
+               value="1"
+               data-component="body">
+    <br>
+<p>Must be at least 1. Must not be greater than 100. Example: <code>1</code></p>
+        </div>
+        </form>
 
                     <h2 id="endpoints-POSTapi-user">POST api/user</h2>
 
@@ -255,7 +368,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://cwi-laravel.test/api/user" \
+    "http://laravel-backend.test/api/user" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -268,7 +381,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://cwi-laravel.test/api/user"
+    "http://laravel-backend.test/api/user"
 );
 
 const headers = {
@@ -410,14 +523,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://cwi-laravel.test/api/user/architecto" \
+    --get "http://laravel-backend.test/api/user/1" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://cwi-laravel.test/api/user/architecto"
+    "http://laravel-backend.test/api/user/1"
 );
 
 const headers = {
@@ -520,14 +633,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
                         <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
+<small>integer</small>&nbsp;
  &nbsp;
-                <input type="text" style="display: none"
-                              name="id"                data-endpoint="GETapi-user--id-"
-               value="architecto"
+                <input type="number" style="display: none"
+               step="any"               name="id"                data-endpoint="GETapi-user--id-"
+               value="1"
                data-component="url">
     <br>
-<p>The ID of the user. Example: <code>architecto</code></p>
+<p>The ID of the user. Example: <code>1</code></p>
             </div>
                     </form>
 
@@ -544,7 +657,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://cwi-laravel.test/api/user/architecto" \
+    "http://laravel-backend.test/api/user/1" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -557,7 +670,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://cwi-laravel.test/api/user/architecto"
+    "http://laravel-backend.test/api/user/1"
 );
 
 const headers = {
@@ -657,14 +770,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
                         <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
+<small>integer</small>&nbsp;
  &nbsp;
-                <input type="text" style="display: none"
-                              name="id"                data-endpoint="PUTapi-user--id-"
-               value="architecto"
+                <input type="number" style="display: none"
+               step="any"               name="id"                data-endpoint="PUTapi-user--id-"
+               value="1"
                data-component="url">
     <br>
-<p>The ID of the user. Example: <code>architecto</code></p>
+<p>The ID of the user. Example: <code>1</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -715,14 +828,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://cwi-laravel.test/api/user/architecto" \
+    "http://laravel-backend.test/api/user/1" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://cwi-laravel.test/api/user/architecto"
+    "http://laravel-backend.test/api/user/1"
 );
 
 const headers = {
@@ -811,14 +924,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
                         <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
+<small>integer</small>&nbsp;
  &nbsp;
-                <input type="text" style="display: none"
-                              name="id"                data-endpoint="DELETEapi-user--id-"
-               value="architecto"
+                <input type="number" style="display: none"
+               step="any"               name="id"                data-endpoint="DELETEapi-user--id-"
+               value="1"
                data-component="url">
     <br>
-<p>The ID of the user. Example: <code>architecto</code></p>
+<p>The ID of the user. Example: <code>1</code></p>
             </div>
                     </form>
 

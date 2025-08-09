@@ -1,31 +1,47 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace App\Http\Controllers;
 
+use App\Http\Requests\User\IndexRequest;
 use App\Http\Requests\User\StoreRequest;
 use App\Http\Requests\User\UpdateRequest;
-use Illuminate\Http\Request;
+use App\Http\Resources\UserResource;
+use App\Models\User;
 
-class UserController extends Controller
+final class UserController extends Controller
 {
-    public function index()
+    public function index(User $user, IndexRequest $request)
     {
+        $result = $user->query()
+            ->orderBy('name')
+            ->paginate(perPage: $request->per_page);
 
+        return UserResource::collection($result);
     }
 
-    public function store(StoreRequest $request)
+    public function store(StoreRequest $request, User $user)
     {
+        $userModel = $user->create($request->validated());
+
+        return new UserResource($userModel);
     }
 
-    public function show($id)
+    public function show(User $user)
     {
+        return new UserResource($user);
     }
 
-    public function update(UpdateRequest $request, $id)
+    public function update(UpdateRequest $request, User $user)
     {
+        $user->update($request->validated());
+        $user->save();
+
+        return new UserResource($user);
     }
 
-    public function destroy($id)
+    public function destroy(User $user)
     {
     }
 }

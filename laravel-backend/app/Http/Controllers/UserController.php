@@ -21,19 +21,19 @@ final class UserController extends Controller
         return UserResource::collection($result);
     }
 
-    public function store(StoreRequest $request, User $user)
+    public function store(StoreRequest $request, User $user): UserResource
     {
         $userModel = $user->create($request->validated());
 
         return new UserResource($userModel);
     }
 
-    public function show(User $user)
+    public function show(User $user): UserResource
     {
         return new UserResource($user);
     }
 
-    public function update(UpdateRequest $request, User $user)
+    public function update(UpdateRequest $request, User $user): UserResource
     {
         $user->update($request->validated());
         $user->save();
@@ -43,5 +43,8 @@ final class UserController extends Controller
 
     public function destroy(User $user)
     {
+        $user->delete();
+
+        return response()->noContent();
     }
 }

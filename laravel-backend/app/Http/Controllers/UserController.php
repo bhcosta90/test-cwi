@@ -16,7 +16,7 @@ final class UserController extends Controller
     {
         $result = $user->query()
             ->orderBy('name')
-            ->paginate(perPage: $request->per_page);
+            ->simplePaginate(perPage: $request->per_page);
 
         return UserResource::collection($result);
     }

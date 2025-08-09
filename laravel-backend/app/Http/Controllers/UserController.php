@@ -16,9 +16,12 @@ final class UserController extends Controller
 {
     public function index(User $user, IndexRequest $request): AnonymousResourceCollection
     {
+        /** @var int $perPage */
+        $perPage = $request->per_page;
+
         $result = $user->query()
             ->orderBy('name')
-            ->simplePaginate(perPage: $request->per_page);
+            ->simplePaginate(perPage: $perPage);
 
         return UserResource::collection($result);
     }

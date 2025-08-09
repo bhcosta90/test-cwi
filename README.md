@@ -7,9 +7,9 @@ This project contains:
 - Postman collections to test the APIs (folder ./postman)
 
 Default ports (configurable via environment variables):
-- Laravel (app): http://localhost:${APP_PORT:-8200}
-- Posts microservice: http://localhost:${MS_POSTS_PORT:-3200}
-- MySQL: localhost:${FORWARD_DB_PORT:-3306}
+- Laravel (app): http://localhost:8200
+- Posts microservice: http://localhost:3200
+- MySQL: localhost:3306
 
 Requirements:
 - Docker and Docker Compose installed
